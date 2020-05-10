@@ -11,8 +11,10 @@ app.use(cors());
 
 //Import routes
 const printersRoute = require("./routes/printers");
+const filamentRoute = require("./routes/filaments");
 
 app.use("/printers", printersRoute);
+app.use("/filaments", filamentRoute);
 //Routes
 app.get("/", (req, res) => {
   res.send("we are alive!");

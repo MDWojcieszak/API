@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Printer = require("../models/Printer");
+const Filament = require("../models/Filament");
 
 router.get("/", (req, res) => {
-  Printer.find()
-    .select("_id name extruderNumber coordinates")
+  Filament.find()
+    .select("_id name brand type diameter")
     .exec()
     .then((data) => {
       const response = {
@@ -18,9 +18,9 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:printerId", (req, res) => {
-  Printer.findById(req.params.printerId)
-    .select("_id name extruderNumber coordinates")
+router.get("/:filamentId", (req, res) => {
+  Filament.findById(req.params.filamentId)
+    .select("_id name brand type diameter")
     .exec()
     .then((data) => {
       if (data) {
@@ -35,20 +35,17 @@ router.get("/:printerId", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const printer = new Printer({
+  const filament = new Filament({
     name: req.body.name,
-    extruderNumber: req.body.extruderNumber,
-    coordinates: {
-      maxX: req.body.coordinates.maxX,
-      maxY: req.body.coordinates.maxY,
-      maxZ: req.body.coordinates.maxZ,
-    },
+    brand: req.body.brand,
+    type: req.body.type,
+    diameter: req.body.diameter,
   });
-  printer
+  filament
     .save()
     .then((result) => {
       res.status(201).json({
-        message: "Printer created successfully!",
+        message: "Filament created successfully!",
         createdPrinter: {
           name: result.name,
         },
@@ -59,12 +56,12 @@ router.post("/", (req, res) => {
     });
 });
 
-router.patch("/:printerId", (req, res) => {
+router.patch("/:filamentId", (req, res) => {
   const update = {};
   for (const ops of req.body) {
     update[ops.propName] = ops.value;
   }
-  Printer.update({ _id: req.param.printerId }, { $set: update })
+  Filament.update({ _id: req.param.filamentId }, { $set: update })
     .exec()
     .then((resault) => {
       res.status(200).json({
@@ -77,12 +74,12 @@ router.patch("/:printerId", (req, res) => {
     });
 });
 
-router.delete("/:printerId", (req, res) => {
-  Printer.remove({ _id: req.params.printerId })
+router.delete("/:filamentId", (req, res) => {
+  Filament.remove({ _id: req.params.filamentId })
     .exec()
     .then((data) => {
       res.status(200).json({
-        message: "Printer deleted successfully!",
+        message: "Filament deleted successfully!",
         data,
       });
     })
@@ -90,5 +87,4 @@ router.delete("/:printerId", (req, res) => {
       res.status(500).json({ error: error });
     });
 });
-
 module.exports = router;
