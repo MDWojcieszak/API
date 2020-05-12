@@ -17,6 +17,12 @@ const FilamnetSchema = mongoose.Schema({
     type: Number,
     require: true,
   },
+  filamentSettings: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "FilamentSettings",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Filament", FilamnetSchema);

@@ -9,9 +9,17 @@ const PrinterSchema = mongoose.Schema({
     type: String,
     require: false,
   },
-  extruderNumber: {
-    type: Number,
-    require: true,
+  extruder: {
+    number: {
+      type: Number,
+      default: 1,
+    },
+    extruderSettings: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "ExtruderSettings",
+      },
+    ],
   },
   coordinates: {
     maxY: {
@@ -27,6 +35,24 @@ const PrinterSchema = mongoose.Schema({
       require: true,
     },
   },
+  printSettings: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "PrintSettings",
+    },
+  ],
+  printerSettings: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "PrinterSettings",
+    },
+  ],
+  printsInFilament: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Filament",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Printer", PrinterSchema);

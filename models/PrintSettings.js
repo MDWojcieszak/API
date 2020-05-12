@@ -5,6 +5,9 @@ const PrintSettingsSchema = mongoose.Schema({
     type: String,
     require: true,
   },
+  description: {
+    type: String,
+  },
   layers: {
     layerHeight: {
       type: Number,
@@ -96,6 +99,14 @@ const PrintSettingsSchema = mongoose.Schema({
       type: Number,
       default: 20,
     },
+  },
+  advancedSettings: {
+    type: Schema.Types.ObjectId,
+    ref: "AdvancedPrintSettings",
+  },
+  forPrinter: {
+    type: Schema.Types.ObjectId,
+    ref: "Printer",
   },
 });
 
