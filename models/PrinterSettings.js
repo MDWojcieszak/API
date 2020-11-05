@@ -70,7 +70,7 @@ const PrinterSettingsSchema = mongoose.Schema({
     },
   },
   forPrinter: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Printer",
   },
 });

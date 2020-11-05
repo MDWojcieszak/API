@@ -44,7 +44,7 @@ const FilamentSettingsSchema = mongoose.Schema({
     },
   },
   forFilament: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Filament",
   },
 });

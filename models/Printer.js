@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+require("../models/ExtruderSettings");
 
 const PrinterSchema = mongoose.Schema({
   name: {
@@ -16,7 +17,7 @@ const PrinterSchema = mongoose.Schema({
     },
     extruderSettings: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "ExtruderSettings",
       },
     ],
@@ -37,19 +38,19 @@ const PrinterSchema = mongoose.Schema({
   },
   printSettings: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "PrintSettings",
     },
   ],
   printerSettings: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "PrinterSettings",
     },
   ],
   printsInFilament: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Filament",
     },
   ],

@@ -101,11 +101,11 @@ const PrintSettingsSchema = mongoose.Schema({
     },
   },
   advancedSettings: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "AdvancedPrintSettings",
   },
   forPrinter: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Printer",
   },
 });
