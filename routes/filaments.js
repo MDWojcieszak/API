@@ -4,12 +4,12 @@ const Filament = require("../models/Filament");
 
 router.get("/", (req, res) => {
   Filament.find()
-    .select("_id name brand type diameter")
+    .select("_id name brand type colour weight diameter")
     .exec()
     .then((data) => {
       const response = {
         count: data.length,
-        printers: data,
+        filaments: data,
       };
       res.status(200).json(response);
     })
@@ -39,6 +39,8 @@ router.post("/", (req, res) => {
     name: req.body.name,
     brand: req.body.brand,
     type: req.body.type,
+    colour: req.body.colour,
+    weight: req.body.weight,
     diameter: req.body.diameter,
   });
   filament
@@ -46,8 +48,8 @@ router.post("/", (req, res) => {
     .then((result) => {
       res.status(201).json({
         message: "Filament created successfully!",
-        createdPrinter: {
-          name: result.name,
+        createdFilament: {
+          name: result.brand,
         },
       });
     })

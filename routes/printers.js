@@ -4,7 +4,7 @@ const Printer = require("../models/Printer");
 
 router.get("/", (req, res) => {
   Printer.find()
-    .select("_id name extruderNumber coordinates")
+    .select("_id name extruderNumber coordinates description")
     .exec()
     .then((data) => {
       const response = {

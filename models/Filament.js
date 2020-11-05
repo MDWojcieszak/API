@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const FilamnetSchema = mongoose.Schema({
-  name: {
-    type: String,
-    require: true,
-  },
+  name: String,
   brand: {
     type: String,
     require: true,
@@ -13,9 +10,17 @@ const FilamnetSchema = mongoose.Schema({
     type: String,
     require: true,
   },
-  diameter: {
+  colour: {
+    type: String,
+    require: true,
+  },
+  weight: {
     type: Number,
     require: true,
+  },
+  diameter: {
+    type: Number,
+    default: 1.75,
   },
 });
 

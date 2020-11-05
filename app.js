@@ -12,12 +12,14 @@ app.use(cors());
 //Import routes
 const printersRoute = require("./routes/printers");
 const filamentRoute = require("./routes/filaments");
+const authorizationRoute = require("./routes/authorization");
 
 app.use("/printers", printersRoute);
 app.use("/filaments", filamentRoute);
+app.use("/user", authorizationRoute);
 //Routes
 app.get("/", (req, res) => {
-  res.send("we are alive!");
+  res.send("Welcome in rest-API!");
 });
 
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () =>
