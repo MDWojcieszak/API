@@ -7,16 +7,16 @@ const ExtruderSettingsSchema = mongoose.Schema({
   },
   nozzleDiameter: {
     type: Number,
-    require: true,
+    require: [true, "Please enter nozzle diameter"],
   },
   layerLimit: {
     min: {
       type: Number,
-      require: true,
+      require: [true, "Please enter maximum layer hight"],
     },
     max: {
       type: Number,
-      require: true,
+      require: [true, "Please enter minimum layer hight"],
     },
   },
   extruderOfset: {
@@ -40,7 +40,7 @@ const ExtruderSettingsSchema = mongoose.Schema({
     },
     speed: {
       type: Number,
-      require: true,
+      require: [true, "Please enter maximum speed retraction"],
     },
     retractOnLayerChange: {
       type: Boolean,

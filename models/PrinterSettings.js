@@ -9,63 +9,63 @@ const PrinterSettingsSchema = mongoose.Schema({
     maxFeedrates: {
       maxX: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       maxY: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       maxZ: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       maxE: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
     },
     maxAcceleration: {
       maxX: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       maxY: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       maxZ: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       maxE: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       maxWhenExtruding: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       maxWhenRetracting: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
     },
     jerkLimit: {
       maxX: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       maxY: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       maxZ: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       maxE: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
     },
   },

@@ -4,7 +4,7 @@ require("../models/ExtruderSettings");
 const PrinterSchema = mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    require: [true, "Please enter printer name"],
   },
   description: {
     type: String,
@@ -25,15 +25,15 @@ const PrinterSchema = mongoose.Schema({
   coordinates: {
     maxY: {
       type: Number,
-      require: true,
+      require: [true, "Please enter maximum position of Y axis"],
     },
     maxX: {
       type: Number,
-      require: true,
+      require: [true, "Please enter maximum position of X axis"],
     },
     maxZ: {
       type: Number,
-      require: true,
+      require: [true, "Please enter maximum position of Z axis"],
     },
   },
   printSettings: [

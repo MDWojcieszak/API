@@ -4,19 +4,19 @@ const FilamnetSchema = mongoose.Schema({
   name: String,
   brand: {
     type: String,
-    require: true,
+    require: [true, "Please enter brand"],
   },
   type: {
     type: String,
-    require: true,
+    require: [true, "Please enter type"],
   },
   colour: {
     type: String,
-    require: true,
+    require: [true, "Please enter colour"],
   },
   weight: {
     type: Number,
-    require: true,
+    require: [true, "Please enter weight"],
   },
   filamentSettings: [
     {

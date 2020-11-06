@@ -3,9 +3,13 @@ const jwt = require("jsonwebtoken");
 
 const maxAge = 3 * 24 * 60 * 60;
 const handleError = (err) => {
+  console.log(err);
   let errors = {};
   if (err.code === 11000) {
     errors.email = "Email already exists";
+  }
+  if (err.message === "incorrect data") {
+    errors = "Email or password is incorrect";
   }
   if (err.message.includes("User validation failed")) {
     Object.values(err.errors).forEach(({ properties }) => {
@@ -43,9 +47,12 @@ module.exports.login = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const accessToken = createToken(user._id);
-    res.json({ accessToken: accessToken, message: "Logged in successfully" });
+    res
+      .status(200)
+      .json({ accessToken: accessToken, message: "Logged in successfully" });
   } catch (err) {
-    res.status(400).json(err);
+    const error = handleError(err);
+    res.status(400).json({ error });
   }
 };
 module.exports.logout = async (req, res) => {};

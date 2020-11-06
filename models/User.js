@@ -40,9 +40,9 @@ UserSchema.statics.login = async function (email, password) {
     if (validPassword) {
       return user;
     }
-    throw Error("Email or password is incorrect");
+    throw Error("incorrect data");
   }
-  throw Error("Email or password is incorrect");
+  throw Error("incorrect data");
 };
 
 module.exports = mongoose.model("User", UserSchema);

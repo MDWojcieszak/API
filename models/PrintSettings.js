@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const PrintSettingsSchema = mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    require: [true, "Please enter print settings name"],
   },
   description: {
     type: String,
@@ -11,37 +11,37 @@ const PrintSettingsSchema = mongoose.Schema({
   layers: {
     layerHeight: {
       type: Number,
-      require: true,
+      require: [true, "Please enter a parameter"],
     },
     FirstLayerHeight: {
       type: Number,
-      require: true,
+      require: [true, "Please enter a parameter"],
     },
   },
   perimeters: {
     number: {
       type: Number,
-      require: true,
+      require: [true, "Please enter a parameter"],
     },
     solidLayers: {
       top: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
       bottom: {
         type: Number,
-        require: true,
+        require: [true, "Please enter a parameter"],
       },
     },
   },
   infil: {
     density: {
       type: Number,
-      require: true,
+      require: [true, "Please enter a parameter"],
     },
     pattern: {
       type: String,
-      require: true,
+      require: [true, "Please enter a parameter"],
     },
     topFillPattern: {
       type: String,

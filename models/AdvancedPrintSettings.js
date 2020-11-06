@@ -10,11 +10,11 @@ const AdvancedPrintSettingsSchema = moongose.Schema({
       type: Number,
       default: 0.42,
     },
-    perimeters: {
+    parimeters: {
       type: Number,
       default: 0.45,
     },
-    externalPerimeters: {
+    externalParimeters: {
       type: Number,
       default: 0.45,
     },

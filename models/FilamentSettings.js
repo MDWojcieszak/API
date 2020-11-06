@@ -5,21 +5,21 @@ const FilamentSettingsSchema = mongoose.Schema({
     extruder: {
       firstLayer: {
         type: Number,
-        require: true,
+        require: [true, "Please enter first layer extruder temperature"],
       },
       otherLayers: {
         type: Number,
-        require: true,
+        require: [true, "Please enter other layers extruder temperature"],
       },
     },
     bed: {
       firstLayer: {
         type: Number,
-        require: true,
+        require: [true, "Please enter first layer bed temperature"],
       },
       otherLayers: {
         type: Number,
-        require: true,
+        require: [true, "Please enter other layers bed temperature"],
       },
     },
   },
