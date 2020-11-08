@@ -11,10 +11,12 @@ app.use(cors());
 //Import routes
 const printersRoute = require("./routes/printers");
 const filamentRoute = require("./routes/filaments");
+const printerSettingsRoute = require("./routes/printerSettings");
 const authorizationRoute = require("./routes/authorization");
 
 app.use("/printers", printersRoute);
 app.use("/filaments", filamentRoute);
+app.use("/printersSettings", printerSettingsRoute);
 app.use("/user", authorizationRoute);
 //Routes
 app.get("/", (req, res) => {

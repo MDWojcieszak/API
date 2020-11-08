@@ -1,7 +1,7 @@
 const Printer = require("../models/Printer");
 
 const handleError = (err) => {
-  console.log(err);
+  //console.log(err);
   let errors = {};
 
   if (err.message.includes("Printer validation failed")) {
@@ -29,6 +29,7 @@ module.exports.get_printers = (req, res) => {
 };
 
 module.exports.get_printer_by_id = (req, res) => {
+  console.log(req.params.printerId);
   Printer.findById(req.params.printerId)
     //.select("_id name extruderNumber coordinates")
     //.exec()
@@ -44,29 +45,28 @@ module.exports.get_printer_by_id = (req, res) => {
     });
 };
 
-module.exports.create_printer = (req, res) => {
-  const printer = new Printer({
-    name: req.body.name,
-    extruderNumber: req.body.extruderNumber,
-    coordinates: {
-      maxX: req.body.coordinates.maxX,
-      maxY: req.body.coordinates.maxY,
-      maxZ: req.body.coordinates.maxZ,
-    },
-  });
-  printer
-    .save()
-    .then((result) => {
-      res.status(201).json({
-        message: "Printer created successfully!",
-        createdPrinter: {
-          name: result.name,
-        },
-      });
-    })
-    .catch((error) => {
-      res.statue(500).json({ error: error });
+module.exports.create_printer = async (req, res) => {
+  const {
+    name,
+    description,
+    extruder: { number },
+    coordinates: { maxY, maxX, maxZ },
+  } = req.body;
+  try {
+    const printer = await Printer.create({
+      name,
+      description,
+      extruder: { number },
+      coordinates: { maxY, maxX, maxZ },
     });
+    res.status(201).json({
+      printer: printer,
+      message: "Printer created successfully!",
+    });
+  } catch (err) {
+    const error = handleError(err);
+    res.status(500).json({ error });
+  }
 };
 
 module.exports.change_printer = (req, res) => {

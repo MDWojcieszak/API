@@ -3,75 +3,81 @@ const mongoose = require("mongoose");
 const PrinterSettingsSchema = mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    required: [true, "Please enter name"],
   },
   machineLimits: {
     maxFeedrates: {
       maxX: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       maxY: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       maxZ: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       maxE: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
     },
     maxAcceleration: {
       maxX: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       maxY: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       maxZ: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       maxE: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       maxWhenExtruding: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       maxWhenRetracting: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
     },
     jerkLimit: {
       maxX: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       maxY: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       maxZ: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       maxE: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
     },
   },
   forPrinter: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Printer",
+    printer_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Printer",
+    },
+    printerName: {
+      type: String,
+      required: [true, "Please enter printer name"],
+    },
   },
 });
 

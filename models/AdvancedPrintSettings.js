@@ -30,6 +30,7 @@ const AdvancedPrintSettingsSchema = moongose.Schema({
   forSettings: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "PrintSettings",
+    required: true,
   },
 });
 

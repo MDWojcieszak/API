@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const Printer = require("../models/Printer");
 const printerController = require("../controllers/printerControler");
 
 router.get("/", printerController.get_printers);
