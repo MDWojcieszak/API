@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const PrintSettingsSchema = mongoose.Schema({
   name: {
     type: String,
-    require: [true, "Please enter print settings name"],
+    required: [true, "Please enter print settings name"],
   },
   description: {
     type: String,
@@ -11,37 +11,37 @@ const PrintSettingsSchema = mongoose.Schema({
   layers: {
     layerHeight: {
       type: Number,
-      require: [true, "Please enter a parameter"],
+      required: [true, "Please enter a parameter"],
     },
     FirstLayerHeight: {
       type: Number,
-      require: [true, "Please enter a parameter"],
+      required: [true, "Please enter a parameter"],
     },
   },
   perimeters: {
     number: {
       type: Number,
-      require: [true, "Please enter a parameter"],
+      required: [true, "Please enter a parameter"],
     },
     solidLayers: {
       top: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
       bottom: {
         type: Number,
-        require: [true, "Please enter a parameter"],
+        required: [true, "Please enter a parameter"],
       },
     },
   },
   infil: {
     density: {
       type: Number,
-      require: [true, "Please enter a parameter"],
+      required: [true, "Please enter a parameter"],
     },
     pattern: {
       type: String,
-      require: [true, "Please enter a parameter"],
+      required: [true, "Please enter a parameter"],
     },
     topFillPattern: {
       type: String,
@@ -100,9 +100,52 @@ const PrintSettingsSchema = mongoose.Schema({
       default: 20,
     },
   },
+  retraction: {
+    length: {
+      type: Number,
+      default: 0.8,
+    },
+    liftZ: {
+      type: Number,
+      default: 0,
+    },
+    speed: {
+      type: Number,
+      required: [true, "Please enter maximum speed retraction"],
+    },
+    retractOnLayerChange: {
+      type: Boolean,
+      default: true,
+    },
+  },
+
   advancedSettings: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "AdvancedPrintSettings",
+    extrusionWidth: {
+      default: {
+        type: Number,
+        default: 0.45,
+      },
+      firstLayer: {
+        type: Number,
+        default: 0.42,
+      },
+      parimeters: {
+        type: Number,
+        default: 0.45,
+      },
+      externalParimeters: {
+        type: Number,
+        default: 0.45,
+      },
+      infil: {
+        type: Number,
+        default: 0.45,
+      },
+    },
+    vaseMode: {
+      type: Boolean,
+      default: false,
+    },
   },
   forPrinter: {
     type: mongoose.Schema.Types.ObjectId,

@@ -6,8 +6,16 @@ const PrinterSchema = mongoose.Schema({
     type: String,
     required: [true, "Please enter printer name"],
   },
+  brand: {
+    type: String,
+    required: [true, "Please enter printer brand"],
+  },
   description: {
     type: String,
+  },
+  img_path: {
+    type: String,
+    required: [true, "Please enter image path"],
   },
   extruder: {
     number: {
@@ -21,15 +29,23 @@ const PrinterSchema = mongoose.Schema({
       },
     ],
   },
+  type: {
+    type: String,
+    require: [true, "Please enter printer type"],
+  },
   coordinates: {
+    maxR: {
+      type: Number,
+      required: false,
+    },
     maxY: {
       type: Number,
-      required: [true, "Please enter maximum position of Y axis"],
+      required: false,
       min: 1,
     },
     maxX: {
       type: Number,
-      required: [true, "Please enter maximum position of X axis"],
+      required: false,
     },
     maxZ: {
       type: Number,

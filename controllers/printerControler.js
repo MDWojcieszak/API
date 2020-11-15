@@ -12,9 +12,10 @@ const handleError = (err) => {
   return errors;
 };
 
-module.exports.get_printers = (req, res) => {
-  Printer.find()
-    .select("_id name extruderNumber coordinates description")
+module.exports.post_printers = (req, res) => {
+  filter = req.body.brand ? req.body.brand : "/*";
+  Printer.find({ brand: { $regex: filter } })
+    .select("_id name extruderNumber coordinates description img_path")
     .exec()
     .then((data) => {
       const response = {
@@ -31,8 +32,6 @@ module.exports.get_printers = (req, res) => {
 module.exports.get_printer_by_id = (req, res) => {
   console.log(req.params.printerId);
   Printer.findById(req.params.printerId)
-    //.select("_id name extruderNumber coordinates")
-    //.exec()
     .then((data) => {
       if (data) {
         res.status(200).json(data);
@@ -48,17 +47,24 @@ module.exports.get_printer_by_id = (req, res) => {
 module.exports.create_printer = async (req, res) => {
   const {
     name,
+    brand,
+    type,
+    img_path,
     description,
     extruder: { number },
-    coordinates: { maxY, maxX, maxZ },
+    coordinates: { maxY, maxX, maxZ, maxR },
   } = req.body;
   try {
     const printer = await Printer.create({
       name,
+      brand,
+      type,
+      img_path,
       description,
       extruder: { number },
-      coordinates: { maxY, maxX, maxZ },
+      coordinates: { maxY, maxX, maxZ, maxR },
     });
+    console.log("New printer is created, name: " + printer.name);
     res.status(201).json({
       printer: printer,
       message: "Printer created successfully!",
@@ -99,4 +105,30 @@ module.exports.delete_printer = (req, res) => {
     .catch((error) => {
       res.status(500).json({ error: error });
     });
+};
+
+module.exports.get_printers_brands = async (req, res) => {
+  try {
+    const data = await Printer.distinct("brand");
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+module.exports.get_printers_by_brand = async (req, res) => {
+  try {
+    const data = await Printer.find(
+      {
+        brand: req.params.brandName,
+      },
+      { _id: 0 }
+    ).select("name");
+    res.status(200).json({
+      count: data.length,
+      printers: data,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
 };

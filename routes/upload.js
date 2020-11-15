@@ -54,9 +54,9 @@ router.patch("/:imagePath", upload.single("image"), (req, res) => {
 
 router.delete("/:imagePath", (req, res) => {
   try {
-    console.log(req.params.imagePath);
     fs.unlinkSync("public/img/" + req.params.imagePath);
-    res.status(201).send("Succesfully deleted an image");
+    console.log("File is deleted: " + req.params.imagePath);
+    res.status(200).send("Succesfully deleted an image");
   } catch (err) {
     res.status(500).send("Error in deleting image");
   }

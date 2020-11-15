@@ -69,6 +69,38 @@ const PrinterSettingsSchema = mongoose.Schema({
       },
     },
   },
+  extruderSettings: [
+    {
+      number: {
+        type: Number,
+        default: 1,
+      },
+      nozzleDiameter: {
+        type: Number,
+        required: [true, "Please enter nozzle diameter"],
+      },
+      layerLimit: {
+        min: {
+          type: Number,
+          required: [true, "Please enter maximum layer hight"],
+        },
+        max: {
+          type: Number,
+          required: [true, "Please enter minimum layer hight"],
+        },
+      },
+      extruderOfset: {
+        x: {
+          type: Number,
+          default: 0,
+        },
+        y: {
+          type: Number,
+          default: 0,
+        },
+      },
+    },
+  ],
   forPrinter: {
     printer_id: {
       type: mongoose.Schema.Types.ObjectId,
