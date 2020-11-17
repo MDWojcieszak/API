@@ -25,15 +25,16 @@ const createToken = (id) => {
 };
 
 module.exports.register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, avatar_img } = req.body;
   try {
-    const user = await User.create({ name, email, password });
+    const user = await User.create({ name, email, password, avatar_img });
     const accessToken = createToken(user._id);
     res.status(201).json({
       message: "User created successfully!",
-      createdUser: {
+      user: {
         name: user.name,
         email: user.email,
+        avatar_img: user.avatar_img,
       },
       accessToken: accessToken,
     });
@@ -47,9 +48,15 @@ module.exports.login = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const accessToken = createToken(user._id);
-    res
-      .status(200)
-      .json({ accessToken: accessToken, message: "Logged in successfully" });
+    res.status(200).json({
+      user: {
+        name: user.name,
+        email: user.email,
+        avatar_img: user.avatar_img,
+      },
+      accessToken: accessToken,
+      message: "Logged in successfully",
+    });
   } catch (err) {
     const error = handleError(err);
     res.status(400).json({ error });

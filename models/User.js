@@ -17,6 +17,9 @@ const UserSchema = mongoose.Schema({
     require: [true, "Please enter password"],
     minlength: [6, "Minimum password length is 6 characters"],
   },
+  avatar_img: {
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now,

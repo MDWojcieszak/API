@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-require("../models/ExtruderSettings");
 
 const PrinterSchema = mongoose.Schema({
   name: {
@@ -22,12 +21,6 @@ const PrinterSchema = mongoose.Schema({
       type: Number,
       default: 1,
     },
-    extruderSettings: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "ExtruderSettings",
-      },
-    ],
   },
   type: {
     type: String,

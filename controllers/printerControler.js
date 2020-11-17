@@ -117,12 +117,9 @@ module.exports.get_printers_brands = async (req, res) => {
 };
 module.exports.get_printers_by_brand = async (req, res) => {
   try {
-    const data = await Printer.find(
-      {
-        brand: req.params.brandName,
-      },
-      { _id: 0 }
-    ).select("name");
+    const data = await Printer.find({
+      brand: req.params.brandName,
+    }).select("name extruder.number");
     res.status(200).json({
       count: data.length,
       printers: data,
