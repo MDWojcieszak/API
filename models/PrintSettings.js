@@ -151,6 +151,10 @@ const PrintSettingsSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Printer",
   },
+  opinion: {
+    type: Number,
+    default: 0.0,
+  },
 });
 
 module.exports = mongoose.model("PrinterSettings", PrintSettingsSchema);

@@ -47,6 +47,10 @@ const FilamentSettingsSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Filament",
   },
+  opinion: {
+    type: Number,
+    default: 0.0,
+  },
 });
 
 module.export = mongoose.model("FilamentSettings", FilamentSettingsSchema);

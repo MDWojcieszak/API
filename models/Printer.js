@@ -67,6 +67,10 @@ const PrinterSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  opinion: {
+    type: Number,
+    default: 0.0,
+  },
 });
 
 module.exports = mongoose.model("Printer", PrinterSchema);

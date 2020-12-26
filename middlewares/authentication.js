@@ -7,7 +7,7 @@ const requireAuth = (req, res, next) => {
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, _id) => {
     if (err) return res.status(403).send({ error: "Token out of date" });
-    req.user_id = _id;
+    req.user_id = _id.id;
     next();
   });
 };

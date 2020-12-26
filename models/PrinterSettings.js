@@ -111,6 +111,10 @@ const PrinterSettingsSchema = mongoose.Schema({
       required: [true, "Please enter printer name"],
     },
   },
+  opinion: {
+    type: Number,
+    default: 0.0,
+  },
 });
 
 module.exports = mongoose.model("PrinterSettings", PrinterSettingsSchema);

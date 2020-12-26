@@ -9,7 +9,7 @@ router.post("/login", authController.login);
 
 router.post("/logout", authController.logout);
 
-router.get("/test", requireAuth, async (req, res) => {
+router.get("/info", requireAuth, async (req, res) => {
   const user = await User.findOne({ _id: req.user_id });
   res.send(user);
 });

@@ -30,7 +30,7 @@ module.exports.post_printers = (req, res) => {
 };
 
 module.exports.get_printer_by_id = (req, res) => {
-  console.log(req.params.printerId);
+  console.log("Requested info for: " + req.params.printerId);
   Printer.findById(req.params.printerId)
     .then((data) => {
       if (data) {
